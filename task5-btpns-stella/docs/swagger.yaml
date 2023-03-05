@@ -1,0 +1,55 @@
+definitions:
+  models.SuccessResponse:
+    properties:
+      token:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /user/login:
+    get:
+      consumes:
+      - application/json
+      description: Do Login
+      parameters:
+      - description: string valid
+        in: query
+        maxLength: 10
+        minLength: 5
+        name: username
+        type: string
+      - description: string valid
+        in: query
+        maxLength: 10
+        minLength: 3
+        name: password
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessResponse'
+      summary: Login Service
+      tags:
+      - Login
+  /user/register:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Do Registration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Register New User Service
+      tags:
+      - Register
+swagger: "2.0"
